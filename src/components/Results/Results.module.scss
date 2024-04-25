@@ -11,16 +11,66 @@
     width: 25.8rem;
     height: 12.4rem;
     display: flex;
-    gap: 1rem;
-    justify-content: center;
+    gap: 2.4rem;
+    justify-content: left;
     align-items: center;
-    margin: 3.2rem 5.1rem 3.2rem 3.2rem;
+    margin-bottom: 3.9rem;
+    border-radius: 0.5rem;
+
+    img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 0.5rem;
+      margin-left: 3.2rem;
+    }
 
     div {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: left;
       justify-content: center;
+      line-height: 2.4rem;
+      gap: 0.5rem;
+
+      span {
+        font-size: 2.8rem;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: $font-color_gray;
+        margin: 0;
+        text-align: left;
+      }
+    }
+
+    .noData {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $font-color_white;
+      border-radius: 0.5rem;
+      font-size: 1.6rem;
+      width: 100%;
+      height: 100%;
+      background: $font-color_gray;
+      background: -moz-linear-gradient(
+        top,
+        $font-color_gray 0%,
+        $background-graph 100%
+      );
+      background: -webkit-linear-gradient(
+        top,
+        $font-color_gray 0%,
+        $background-graph 100%
+      );
+      background: linear-gradient(
+        to bottom,
+        $font-color_gray 0%,
+        $background-graph 100%
+      );
     }
   }
 }

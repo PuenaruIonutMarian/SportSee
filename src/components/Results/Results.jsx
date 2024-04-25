@@ -8,7 +8,7 @@ import style from './Results.module.scss';
 const Results = ({ calorieCount, proteinCount, carbohydrateCount, lipidCount }) => {
   return (
     <div className={style.results}>
-      {renderDataItem(calorieCount, CaloriesIcon, 'Calories', 'kcal')}
+      {renderDataItem(calorieCount, CaloriesIcon, 'Calories', 'kCal')}
       {renderDataItem(proteinCount, ProteinIcon, 'Proteines', 'g')}
       {renderDataItem(carbohydrateCount, CarbsIcon, 'Glucides', 'g')}
       {renderDataItem(lipidCount, FatIcon, 'Lipides', 'g')}
@@ -21,13 +21,13 @@ const renderDataItem = (dataCount, icon, label, unit) => {
     <div className={style.resultsDataItem}>
       <img src={icon} alt={`${label} Icon`} />
       <div>
-        <span>{dataCount} {unit}</span>
+        <span>{dataCount}{unit}</span>
         <p>{label}</p>
       </div>
     </div>
   ) : (
     <div className={style.resultsDataItem}>
-      <p className={style.noData}>Aucun information</p>
+      <p className={style.noData}>Aucune donnée disponible</p>
     </div>
   );
 };

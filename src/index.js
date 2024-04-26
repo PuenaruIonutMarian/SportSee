@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import Sidebar from './components/Sidebar/Sidebar';
+import { DataProvider } from './utils/hooks/DataHook';
 
 
 
@@ -13,14 +14,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Router>
-      <Navbar />
-      <div style={{ display: 'flex' }}>
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </div>
+      <DataProvider>
+        <Navbar />
+        <div style={{ display: 'flex' }}>
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </div>
+      </DataProvider>
     </Router>
   </React.StrictMode>,
 )

@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from '../../assets/Group.svg'
 import styles from "./Navbar.module.scss";
 

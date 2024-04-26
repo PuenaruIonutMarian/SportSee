@@ -1,4 +1,3 @@
-import React from 'react';
 import CaloriesIcon from '../../assets/calories-icon.svg';
 import ProteinIcon from '../../assets/protein-icon.svg';
 import CarbsIcon from '../../assets/carbs-icon.svg';

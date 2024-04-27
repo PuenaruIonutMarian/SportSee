@@ -8,7 +8,7 @@ const Results = ({ calorieCount, proteinCount, carbohydrateCount, lipidCount }) 
   return (
     <div className={style.results}>
       {renderDataItem(calorieCount, CaloriesIcon, 'Calories', 'kCal')}
-      {renderDataItem(proteinCount, ProteinIcon, 'Proteines', 'g')}
+      {renderDataItem(proteinCount, ProteinIcon, 'Protéines', 'g')}
       {renderDataItem(carbohydrateCount, CarbsIcon, 'Glucides', 'g')}
       {renderDataItem(lipidCount, FatIcon, 'Lipides', 'g')}
     </div>
@@ -16,17 +16,22 @@ const Results = ({ calorieCount, proteinCount, carbohydrateCount, lipidCount }) 
 };
 
 const renderDataItem = (dataCount, icon, label, unit) => {
+  // Format dataCount using Intl.NumberFormat
+  const formattedDataCount = dataCount ? 
+    new Intl.NumberFormat("en-IN", { maximumSignificantDigits: 3 }).format(dataCount) : 
+    null;
+
   return dataCount ? (
     <div className={style.resultsDataItem}>
       <img src={icon} alt={`${label} Icon`} />
       <div>
-        <span>{dataCount}{unit}</span>
+        <span>{formattedDataCount}{unit}</span>
         <p>{label}</p>
       </div>
     </div>
   ) : (
     <div className={style.resultsDataItem}>
-      <p className={style.noData}>Aucune donnée disponible</p>
+      <p className={style.noData}>No data available</p>
     </div>
   );
 };

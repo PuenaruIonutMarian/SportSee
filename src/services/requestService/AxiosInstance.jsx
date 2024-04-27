@@ -1,8 +1,14 @@
 import axios from 'axios';
 
-const AxiosInstance = axios.create({
-  baseURL: '/api', 
-  timeout: 5000, 
+const apiBaseUrl = process.env.REACT_APP_BASE_URL;
+const mockDataBaseUrl = '/mockData/mockData.json';
+
+const ApiAxiosInstance = axios.create({
+  baseURL: apiBaseUrl,
 });
 
-export default AxiosInstance;
+const MockDataAxiosInstance = axios.create({
+  baseURL: mockDataBaseUrl,
+});
+
+export { ApiAxiosInstance, MockDataAxiosInstance };

@@ -1,7 +1,7 @@
-import AxiosInstance from './AxiosInstance';
-import mockData from '/src/services/mockData.json';
+import {ApiAxiosInstance} from './AxiosInstance';
+import { MockDataAxiosInstance } from './AxiosInstance';
 
-const useMockData = true; // Set to true if you want to use mock data
+const useMockData = true; // TRUE for mock data and FALSE for API
 
 class DataService {
   constructor() {
@@ -28,7 +28,7 @@ class DataService {
 class BaseDataService {
   async fetchData(endpoint) {
     try {
-      const response = await AxiosInstance.get(endpoint);
+      const response = await (useMockData ? MockDataAxiosInstance : ApiAxiosInstance).get(endpoint);
       return response.data;
     } catch (error) {
       console.error(`Error while retrieving data from ${endpoint}`, error);
@@ -37,56 +37,146 @@ class BaseDataService {
   }
 }
 
+
 class ApiDataService extends BaseDataService {
   async getUserData(userId) {
-    return await this.fetchData(`/api/user/${userId}`);
+    return await this.fetchData(`/user/${userId}`);
   }
 
   async getUserActivity(userId) {
-    return await this.fetchData(`/api/user/${userId}/activity`);
+    return await this.fetchData(`/user/${userId}/activity`);
   }
 
   async getUserAverageSessions(userId) {
-    return await this.fetchData(`/api/user/${userId}/average-sessions`);
+    return await this.fetchData(`/user/${userId}/average-sessions`);
   }
 
   async getUserPerformance(userId) {
-    return await this.fetchData(`/api/user/${userId}/performance`);
+    return await this.fetchData(`/user/${userId}/performance`);
   }
 }
 
-class MockDataService {
+class MockDataService extends BaseDataService {
   async getUserData(userId) {
-    if (mockData[userId]) {
-      return mockData[userId].userInfo;
-    } else {
-      throw new Error('User data not found in mock data');
+    try {
+      const data = await this.fetchData();
+      const userData = data.USER_MAIN_DATA.find(item => item.id === parseInt(userId));
+      if (userData) {
+        return { data: { userInfos: userData.userInfos, keyData: userData.keyData, score: userData.score } };
+      } else {
+        throw new Error('User data not found in mock data');
+      }
+    } catch (error) {
+      throw new Error('Error fetching user data from mock data: ' + error.message);
     }
   }
 
   async getUserActivity(userId) {
-    if (mockData[userId] && mockData[userId].userActivity) {
-      return { data: mockData[userId].userActivity };
-    } else {
-      throw new Error('User activity data not found in mock data');
+    try {
+      const data = await this.fetchData();
+      const userActivity = data.USER_ACTIVITY.find(data => data.userId === parseInt(userId));
+      if (userActivity) {
+        return { data: userActivity };
+      } else {
+        throw new Error('User activity data not found in mock data');
+      }
+    } catch (error) {
+      throw new Error('Error fetching user activity from mock data: ' + error.message);
     }
   }
 
   async getUserAverageSessions(userId) {
-    if (mockData[userId] && mockData[userId].averageSessions && mockData[userId].averageSessions.sessions) {
-      return { data: { sessions: mockData[userId].averageSessions.sessions } };
-    } else {
-      throw new Error('User average sessions data not found in mock data');
+    try {
+      const data = await this.fetchData();
+      const averageSessions = data.USER_AVERAGE_SESSIONS.find(data => data.userId === parseInt(userId));
+      if (averageSessions) {
+        return { data: { sessions: averageSessions.sessions } };
+      } else {
+        throw new Error('User average sessions data not found in mock data');
+      }
+    } catch (error) {
+      throw new Error('Error fetching user average sessions from mock data: ' + error.message);
     }
   }
 
   async getUserPerformance(userId) {
-    if (mockData[userId] && mockData[userId].performance) {
-      return { data: mockData[userId].performance };
-    } else {
-      throw new Error('User performance data not found in mock data');
+    try {
+      const data = await this.fetchData();
+      const userPerformance = data.USER_PERFORMANCE.find(data => data.userId === parseInt(userId));
+      if (userPerformance) {
+        return { data: userPerformance };
+      } else {
+        throw new Error('User performance data not found in mock data');
+      }
+    } catch (error) {
+      throw new Error('Error fetching user performance from mock data: ' + error.message);
     }
   }
 }
+
+
+
+// class MockDataService extends BaseDataService {
+//   async getUserData(userId) {
+
+//     try {
+//       const data = await this.fetchData();
+//       console.log(data);
+//       const userData = data.USER_MAIN_DATA.find(item => item.id === parseInt(userId)); // Adjusted for the property name
+//       console.log('userData:', userData);
+//       if (userData) {
+//         return userData.userInfos;
+//       } else {
+//         throw new Error('User data not found in mock data');
+//       }
+//     } catch (error) {
+//       throw new Error('Error fetching user data from mock data: ' + error.message);
+//     }
+//   }
+
+//   async getUserActivity(userId) {
+//     try {
+//       const data = await this.fetchData();
+//       const userActivity = data.USER_ACTIVITY.find(data => data.userId === parseInt(userId));
+//       if (userActivity) {
+//         return { data: userActivity.sessions };
+//       } else {
+//         throw new Error('User activity data not found in mock data');
+//       }
+//     } catch (error) {
+//       throw new Error('Error fetching user activity from mock data: ' + error.message);
+//     }
+//   }
+
+//   async getUserAverageSessions(userId) {
+//     try {
+//       const data = await this.fetchData();
+//       const averageSessions = data.USER_AVERAGE_SESSIONS.find(data => data.userId === parseInt(userId));
+//       if (averageSessions) {
+//         return { data: { sessions: averageSessions.sessions } };
+//       } else {
+//         throw new Error('User average sessions data not found in mock data');
+//       }
+//     } catch (error) {
+//       throw new Error('Error fetching user average sessions from mock data: ' + error.message);
+//     }
+//   }
+
+//   async getUserPerformance(userId) {
+//     try {
+//       const data = await this.fetchData();
+//       const userPerformance = data.USER_PERFORMANCE.find(data => data.userId === parseInt(userId));
+//       if (userPerformance) {
+//         return { data: userPerformance.data };
+//       } else {
+//         throw new Error('User performance data not found in mock data');
+//       }
+//     } catch (error) {
+//       throw new Error('Error fetching user performance from mock data: ' + error.message);
+//     }
+//   }
+// }
+
+
 
 export { DataService };

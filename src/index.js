@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import Sidebar from './components/Sidebar/Sidebar';
-import { DataProvider } from './utils/hooks/DataHook';
+import { DataProvider } from './utils/context/DataContext';
 
 
 

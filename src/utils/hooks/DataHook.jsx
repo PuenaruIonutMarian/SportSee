@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { DataContext } from '../../utils/context/DataContext'; // Update the path as per your file structure
+import { DataContext } from '../../utils/context/DataContext';
 
 const useHostingData = (userId) => {
   const { dataService } = useContext(DataContext);
@@ -35,9 +35,14 @@ const useHostingData = (userId) => {
 
     fetchData();
 
-    // Clean-up function if needed
+    // Cleanup function
     return () => {
-      // Clean-up code if any
+      setUserData(null);
+      setUserActivity(null);
+      setAverageSessions(null);
+      setUserPerformance(null);
+      setLoading(true);
+      setError(null);
     };
   }, [dataService, userId]);
 

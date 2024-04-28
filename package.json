@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
+    "recharts": "^2.12.6",
     "sass": "^1.75.0"
   }
 }

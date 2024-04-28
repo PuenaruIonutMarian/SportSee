@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10.9rem;
+  gap: 7.7rem;
+
+  .graphics {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    gap: 2.8rem;
+  }
+}

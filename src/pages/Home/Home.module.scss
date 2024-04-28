@@ -1,14 +1,48 @@
 .home {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  margin: 10.9rem;
-  gap: 7.7rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: calc(100vh - 91px);
 
-  .graphics {
-    height: 100vh;
+  h1 {
+    margin: 0;
+    font-size: 3.8rem;
+  }
+
+  div {
     display: flex;
-    flex-direction: row;
-    gap: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 5rem;
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 }
+
+// img {
+//   width: 100px;
+//   height: 100px;
+// }
+
+// form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }

@@ -1,5 +1,6 @@
 import logo from '../../assets/Group.svg'
 import styles from "./Navbar.module.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar = () => {
             <h1>SportSee</h1>
         </div>
         <ul>
-            <li >Accueil</li>
+            <li ><Link to="/">Accueil</Link></li>
             <li>Profil</li>
             <li>Réglage</li>
             <li>Communauté</li>

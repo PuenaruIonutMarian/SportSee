@@ -27,7 +27,6 @@ const Sidebar = () => {
       </button>
   </div>
   
-    {/* Copyright message */}
     <p>Copyright SportSee {getCurrentYear()}.</p>
 </aside>
   )

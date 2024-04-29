@@ -16,7 +16,7 @@ const Results = ({ calorieCount, proteinCount, carbohydrateCount, lipidCount }) 
 };
 
 const renderDataItem = (dataCount, icon, label, unit) => {
-  // Format dataCount using Intl.NumberFormat
+  // Format dataCount avec Intl.NumberFormat
   const formattedDataCount = dataCount ? 
     new Intl.NumberFormat("en-IN", { maximumSignificantDigits: 3 }).format(dataCount) : 
     null;

@@ -21,7 +21,7 @@ root.render(
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path="dashboard/user/:id" element={<Dashboard />} />
-            <Route path="*" element={<Error />} />
+            <Route path="/*" element={<Error />} />
           </Routes>
         </div>
       </DataProvider>

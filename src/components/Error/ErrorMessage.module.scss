@@ -1,0 +1,19 @@
+@use '../../styles/variables.scss' as *;
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $font-color_red;
+  text-align: center;
+  font-size: 2.4rem;
+  height: calc(100vh - 91px);
+
+  h1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

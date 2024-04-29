@@ -7,3 +7,5 @@ export const DataProvider = ({ children }) => {
   const dataService = new DataService();
   return <DataContext.Provider value={{ dataService }}>{children}</DataContext.Provider>;
 }
+
+

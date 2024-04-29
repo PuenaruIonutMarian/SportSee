@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/globals.scss';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -9,9 +9,8 @@ import Error from './pages/Error/Error';
 import Sidebar from './components/Sidebar/Sidebar';
 import { DataProvider } from './utils/context/DataContext';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Router>
@@ -27,6 +26,5 @@ root.render(
         </div>
       </DataProvider>
     </Router>
-  </React.StrictMode>,
-)
-
+  </React.StrictMode>
+);

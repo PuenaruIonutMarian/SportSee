@@ -3,7 +3,7 @@ import { BaseService } from '../BaseService/BaseService';
 export class MockService extends BaseService {
   async getUserData(userId) {
     try {
-      const data = await this.fetchData('/mockData.json');
+      const data = await this.fetchData();
       const userData = data[userId]?.userInfo;
       if (userData) {
         return { data: userData };
@@ -17,7 +17,7 @@ export class MockService extends BaseService {
 
   async getUserActivity(userId) {
     try {
-      const data = await this.fetchData('/mockData.json');
+      const data = await this.fetchData();
       const userActivity = data[userId]?.userActivity;
       if (userActivity) {
         return { data: userActivity };
@@ -31,7 +31,7 @@ export class MockService extends BaseService {
 
   async getUserAverageSessions(userId) {
     try {
-      const data = await this.fetchData('/mockData.json');
+      const data = await this.fetchData();
       const averageSessions = data[userId]?.averageSessions;
       if (averageSessions) {
         return { data: averageSessions };
@@ -45,7 +45,7 @@ export class MockService extends BaseService {
 
   async getUserPerformance(userId) {
     try {
-      const data = await this.fetchData('/mockData.json');
+      const data = await this.fetchData();
       const performance = data[userId]?.performance;
       if (performance) {
         return { data: performance };

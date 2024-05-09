@@ -17,10 +17,10 @@ const useHostingData = (userId) => {
         const userActivity = await dataService.getUserActivity(userId);
         const averageSessions = await dataService.getUserAverageSessions(userId);
         const userPerformance = await dataService.getUserPerformance(userId);
-        console.log('userData:', userData);
-        console.log('userActivity:', userActivity);
-        console.log('averageSessions:', averageSessions);
-        console.log('userPerformance:', userPerformance);
+        // console.log('userData:', userData);
+        // console.log('userActivity:', userActivity);
+        // console.log('averageSessions:', averageSessions);
+        // console.log('userPerformance:', userPerformance);
 
         setUserData(userData);
         setUserActivity(userActivity);

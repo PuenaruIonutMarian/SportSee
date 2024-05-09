@@ -3,17 +3,21 @@ import ProteinIcon from '../../assets/protein-icon.svg';
 import CarbsIcon from '../../assets/carbs-icon.svg';
 import FatIcon from '../../assets/fat-icon.svg';
 import style from './Results.module.scss';
+import DataAdapter from '../../utils/adapters/DataAdapter';
 
-const Results = ({ calorieCount, proteinCount, carbohydrateCount, lipidCount }) => {
+const Results = ({ userData }) => {
+  const adaptedData = DataAdapter.adaptUserData(userData.data);
+
   return (
     <div className={style.results}>
-      {renderDataItem(calorieCount, CaloriesIcon, 'Calories', 'kCal')}
-      {renderDataItem(proteinCount, ProteinIcon, 'Protéines', 'g')}
-      {renderDataItem(carbohydrateCount, CarbsIcon, 'Glucides', 'g')}
-      {renderDataItem(lipidCount, FatIcon, 'Lipides', 'g')}
+      {renderDataItem(adaptedData.calorieCount, CaloriesIcon, 'Calories', 'kCal')}
+      {renderDataItem(adaptedData.proteinCount, ProteinIcon, 'Protéines', 'g')}
+      {renderDataItem(adaptedData.carbohydrateCount, CarbsIcon, 'Glucides', 'g')}
+      {renderDataItem(adaptedData.lipidCount, FatIcon, 'Lipides', 'g')}
     </div>
   );
 };
+
 
 const renderDataItem = (dataCount, icon, label, unit) => {
   // Format dataCount avec Intl.NumberFormat

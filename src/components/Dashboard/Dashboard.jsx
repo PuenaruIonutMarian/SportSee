@@ -11,10 +11,7 @@ import Loader from '../Loader/Loader';
 const Dashboard = () => {
   const { id } = useParams();
   const userId = id;
-
   const { userData, loading, error } = useHostingData(userId);
-  // console.log('userData:', userData);
-
 
   if (loading) {
     return <Loader />;

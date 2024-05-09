@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { DataService } from '../../services/requestService/requestService';
+import { DataService } from '../../services/DataService/DataService';
 
 export const DataContext = createContext();
 

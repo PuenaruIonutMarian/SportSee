@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiBaseUrl = process.env.REACT_APP_BASE_URL;
-const mockDataBaseUrl = '/mockData/mockData.json';
+const mockDataBaseUrl = '/mockData/mockDatas.json';
 
 const ApiAxiosInstance = axios.create({
   baseURL: apiBaseUrl,

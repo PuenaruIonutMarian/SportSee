@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom"
-import style from "./Home.module.scss"
-import Karl from "../../assets/Karl.png"
-import Cecilia from "../../assets/Cecilia.png"
+import { Link } from "react-router-dom";
+import style from "./Home.module.scss";
+import Karl from "../../assets/Karl.png";
+import Cecilia from "../../assets/Cecilia.png";
+
 
 const Home = () => {
+
   return (
     <main className={style.home}>
       <h1>Selectionner un utilisateur</h1>

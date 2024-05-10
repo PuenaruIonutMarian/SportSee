@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/globals.scss';
 import Navbar from './components/Navbar/Navbar';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import Sidebar from './components/Sidebar/Sidebar';

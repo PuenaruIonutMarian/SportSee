@@ -1,17 +1,17 @@
-import Header from '../Header/Header';
-import Results from '../Results/Results';
-import Graphs from '../Graphs/Graphs';
+import Header from '../../components/Header/Header';
+import Results from '../../components/Results/Results';
+import Graphs from '../../components/Graphs/Graphs';
 import style from './Dashboard.module.scss';
 import useHostingData from '../../utils/hooks/DataHook';
 import { useParams } from 'react-router-dom';
-import Error from '../../pages/Error/Error';
-import ErrorMessage from '../Error/ErrorMessage';
-import Loader from '../Loader/Loader';
+import Error from '../Error/Error';
+import ErrorMessage from '../../components/Error/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
 
 const Dashboard = () => {
   const { id } = useParams();
   const userId = id;
-  const { userData, loading, error } = useHostingData(userId);
+  const { userData, userActivity, averageSessions, userPerformance, loading, error } = useHostingData(userId);
 
   if (loading) {
     return <Loader />;
@@ -25,7 +25,7 @@ const Dashboard = () => {
     <main className={style.dashboard}>
       <Header userData={userData} />
       <div className={style.graphics}>
-        <Graphs />
+        <Graphs userActivity={userActivity} averageSessions={averageSessions} userPerformance={userPerformance} />
         <Results userData={userData} />
       </div>
     </main>

@@ -10,7 +10,7 @@ const Navbar = () => {
             <h1>SportSee</h1>
         </div>
         <ul>
-            <li ><Link to="/">Accueil</Link></li>
+            <li><Link to="/" className={styles.link}>Accueil</Link></li>
             <li>Profil</li>
             <li>Réglage</li>
             <li>Communauté</li>

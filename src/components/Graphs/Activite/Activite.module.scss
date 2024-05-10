@@ -1,0 +1,44 @@
+.activite {
+  // display: flex;
+  // width: 835px;
+  // height: 320px;
+  // margin: 0;
+  // border-radius: 5px;
+  // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
+
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
+  background-color: #fbfbfb;
+  margin: 0;
+  border-radius: 0.5rem;
+  height: 320px;
+  width: 100%;
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    padding: 20px 0 0 20px;
+    margin-top: 0;
+  }
+
+  .chart {
+    .GraphTooltip {
+      background-color: #e60000;
+      width: 39px;
+      height: 63px;
+      flex-shrink: 0;
+      color: #fff;
+      text-align: center;
+      font-family: Roboto;
+      font-size: 0.7rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2.4rem;
+    }
+  }
+
+  .legend {
+    margin-right: 50px;
+    margin-bottom: 10px;
+  }
+}

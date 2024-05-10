@@ -1,8 +1,8 @@
-import React from 'react'
+import style from './Duree.module.scss'
 
 const Duree = () => {
   return (
-    <div>Duree</div>
+    <div className={style.duree}>Duree</div>
   )
 }
 

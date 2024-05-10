@@ -22,7 +22,7 @@ const Results = ({ userData }) => {
 const renderDataItem = (dataCount, icon, label, unit) => {
   // Format dataCount avec Intl.NumberFormat
   const formattedDataCount = dataCount ? 
-    new Intl.NumberFormat("en-IN", { maximumSignificantDigits: 3 }).format(dataCount) : 
+    new Intl.NumberFormat("en-IN", { maximumSignificantDigits: 4 }).format(dataCount) : 
     null;
 
   return dataCount ? (

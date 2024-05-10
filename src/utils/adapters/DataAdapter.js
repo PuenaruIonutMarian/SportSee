@@ -6,6 +6,9 @@ class DataAdapter {
       proteinCount: data?.keyData?.proteinCount || data?.proteinCount || 0,
       carbohydrateCount: data?.keyData?.carbohydrateCount || data?.carbohydrateCount || 0,
       lipidCount: data?.keyData?.lipidCount || data?.lipidCount || 0,
+      userActivity: data || data?.userActivity || [], 
+      averageSessions: data || data?.averageSessions || {},
+      performance: data || data?.performance || {}, 
     };
   }
 }

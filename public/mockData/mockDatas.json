@@ -1,66 +1,81 @@
 {
-  "12": {
+  "13": {
     "userInfo": {
-      "id": 12,
-      "firstName": "Karlos",
-      "lastName": "Dovineau",
-      "age": 31,
-      "todayScore": 0.12,
-      "calorieCount": 1930,
-      "proteinCount": 155,
-      "carbohydrateCount": 290,
-      "lipidCount": 50
+      "id": 13,
+      "firstName": "Thomas",
+      "lastName": "Richard",
+      "age": 35,
+      "todayScore": 0.18,
+      "calorieCount": 1730,
+      "proteinCount": 195,
+      "carbohydrateCount": 190,
+      "lipidCount": 10
     },
     "userActivity": {
-      "userId": 12,
+      "userId": 13,
       "sessions": [
         {
           "day": "2020-07-01",
           "kilogram": 80,
-          "calories": 240
+          "calories": 940
         },
         {
           "day": "2020-07-02",
           "kilogram": 80,
-          "calories": 220
+          "calories": 820
         },
         {
           "day": "2020-07-03",
           "kilogram": 81,
-          "calories": 280
+          "calories": 580
         },
         {
           "day": "2020-07-04",
           "kilogram": 81,
-          "calories": 290
+          "calories": 690
         },
         {
           "day": "2020-07-05",
           "kilogram": 80,
-          "calories": 160
+          "calories": 360
         },
         {
           "day": "2020-07-06",
           "kilogram": 78,
-          "calories": 162
+          "calories": 362
         },
         {
           "day": "2020-07-07",
           "kilogram": 76,
           "calories": 390
+        },
+        {
+          "day": "2020-07-08",
+          "kilogram": 81,
+          "calories": 690
+        },
+        {
+          "day": "2020-07-09",
+          "kilogram": 80,
+          "calories": 360
+        },
+        {
+          "day": "2020-07-10",
+          "kilogram": 78,
+          "calories": 362
         }
       ]
     },
     "averageSessions": {
-      "userId": 12,
+      "userId": 13,
       "sessions": [
         {
           "day": 1,
-          "sessionLength": 30
+          "sessionLength": 40
         },
         {
           "day": 2,
-          "sessionLength": 23
+          "sessionLength": 43
         },
         {
           "day": 3,
@@ -72,11 +87,11 @@
         },
         {
           "day": 5,
-          "sessionLength": 0
+          "sessionLength": 10
         },
         {
           "day": 6,
-          "sessionLength": 0
+          "sessionLength": 11
         },
         {
           "day": 7,
@@ -85,7 +100,7 @@
       ]
     },
     "performance": {
-      "userId": 12,
+      "userId": 13,
       "kind": {
         "1": "cardio",
         "2": "energy",
@@ -95,81 +110,81 @@
         "6": "intensity"
       },
       "data": [
-        { "value": 80, "kind": 1 },
-        { "value": 120, "kind": 2 },
+        { "value": 180, "kind": 1 },
+        { "value": 140, "kind": 2 },
         { "value": 140, "kind": 3 },
-        { "value": 50, "kind": 4 },
-        { "value": 200, "kind": 5 },
-        { "value": 90, "kind": 6 }
+        { "value": 150, "kind": 4 },
+        { "value": 100, "kind": 5 },
+        { "value": 190, "kind": 6 }
       ]
     }
   },
-  "18": {
+  "19": {
     "userInfo": {
-      "id": 18,
-      "firstName": "Ceciliana",
+      "id": 19,
+      "firstName": "Christine",
       "lastName": "Ratorez",
-      "age": 34,
-      "todayScore": 0.3,
-      "calorieCount": 2500,
-      "proteinCount": 90,
-      "carbohydrateCount": 150,
-      "lipidCount": 120
+      "age": 23,
+      "todayScore": 0.8,
+      "calorieCount": 1975,
+      "proteinCount": 190,
+      "carbohydrateCount": 100,
+      "lipidCount": 20
     },
     "userActivity": {
-      "userId": 18,
+      "userId": 19,
       "sessions": [
         {
           "day": "2020-07-01",
           "kilogram": 70,
-          "calories": 240
+          "calories": 840
         },
         {
           "day": "2020-07-02",
           "kilogram": 69,
-          "calories": 220
+          "calories": 720
         },
         {
           "day": "2020-07-03",
           "kilogram": 70,
-          "calories": 280
+          "calories": 780
         },
         {
           "day": "2020-07-04",
           "kilogram": 70,
-          "calories": 500
+          "calories": 800
         },
         {
           "day": "2020-07-05",
           "kilogram": 69,
-          "calories": 160
+          "calories": 660
         },
         {
           "day": "2020-07-06",
           "kilogram": 69,
-          "calories": 162
+          "calories": 962
         },
         {
           "day": "2020-07-07",
           "kilogram": 69,
-          "calories": 390
+          "calories": 790
         }
       ]
     },
     "averageSessions": {
-      "userId": 18,
+      "userId": 19,
       "sessions": [
         {
           "day": 1,
-          "sessionLength": 30
+          "sessionLength": 50
         },
         {
           "day": 2,
-          "sessionLength": 40
+          "sessionLength": 30
         },
         {
           "day": 3,
-          "sessionLength": 50
+          "sessionLength": 60
         },
         {
           "day": 4,
@@ -181,16 +196,16 @@
         },
         {
           "day": 6,
-          "sessionLength": 50
+          "sessionLength": 70
         },
         {
           "day": 7,
-          "sessionLength": 50
+          "sessionLength": 10
         }
       ]
     },
     "performance": {
-      "userId": 18,
+      "userId": 19,
       "kind": {
         "1": "cardio",
         "2": "energy",
@@ -200,12 +215,12 @@
         "6": "intensity"
       },
       "data": [
-        { "value": 200, "kind": 1 },
-        { "value": 240, "kind": 2 },
-        { "value": 80, "kind": 3 },
-        { "value": 80, "kind": 4 },
-        { "value": 220, "kind": 5 },
-        { "value": 110, "kind": 6 }
+        { "value": 230, "kind": 1 },
+        { "value": 250, "kind": 2 },
+        { "value": 180, "kind": 3 },
+        { "value": 180, "kind": 4 },
+        { "value": 260, "kind": 5 },
+        { "value": 150, "kind": 6 }
       ]
     }
   }

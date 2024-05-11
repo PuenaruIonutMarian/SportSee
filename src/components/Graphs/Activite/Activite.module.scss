@@ -1,11 +1,4 @@
 .activite {
-  // display: flex;
-  // width: 835px;
-  // height: 320px;
-  // margin: 0;
-  // border-radius: 5px;
-  // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
-
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
   background-color: #fbfbfb;
   margin: 0;
@@ -37,8 +30,7 @@
     }
   }
 
-  .legend {
-    margin-right: 50px;
-    margin-bottom: 10px;
+  .recharts-legend-item-text {
+    color: #9b9eac !important;
   }
 }

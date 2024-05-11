@@ -6,10 +6,10 @@
       "lastName": "Richard",
       "age": 35,
       "todayScore": 0.18,
-      "calorieCount": 1730,
-      "proteinCount": 195,
-      "carbohydrateCount": 190,
-      "lipidCount": 10
+      "calorieCount": 1930,
+      "proteinCount": 155,
+      "carbohydrateCount": 290,
+      "lipidCount": 50
     },
     "userActivity": {
       "userId": 13,
@@ -17,52 +17,52 @@
         {
           "day": "2020-07-01",
           "kilogram": 80,
-          "calories": 940
+          "calories": 240
         },
         {
           "day": "2020-07-02",
           "kilogram": 80,
-          "calories": 820
+          "calories": 220
         },
         {
           "day": "2020-07-03",
           "kilogram": 81,
-          "calories": 580
+          "calories": 280
         },
         {
           "day": "2020-07-04",
           "kilogram": 81,
-          "calories": 690
+          "calories": 290
         },
         {
           "day": "2020-07-05",
           "kilogram": 80,
-          "calories": 360
+          "calories": 160
         },
         {
           "day": "2020-07-06",
           "kilogram": 78,
-          "calories": 362
+          "calories": 162
         },
         {
           "day": "2020-07-07",
           "kilogram": 76,
-          "calories": 390
+          "calories": 190
         },
         {
           "day": "2020-07-08",
           "kilogram": 81,
-          "calories": 690
+          "calories": 290
         },
         {
           "day": "2020-07-09",
           "kilogram": 80,
-          "calories": 360
+          "calories": 260
         },
         {
           "day": "2020-07-10",
           "kilogram": 78,
-          "calories": 362
+          "calories": 262
         }
       ]
     },

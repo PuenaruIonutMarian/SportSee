@@ -44,7 +44,7 @@ const CustomTickYAxis = (props) => {
 };
 
 
-// Custom tooltip component for the chart
+// Custom tooltip component 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -71,12 +71,12 @@ const CustomTooltip = ({ active, payload }) => {
                 stroke="#ccc"
               />
             ))}
-            <XAxis dataKey="day" tick={<CustomTickXAxis />} tickLine={false}  />
-            <YAxis yAxisId="left" orientation="left" hide={true} />
-            <YAxis yAxisId="right" orientation="right" stroke="#282D30" domain={[minPoids, maxPoids]} ticks={yAxisTicks} tick={<CustomTickYAxis />} tickLine={false} />
+            <XAxis dataKey="day" tick={<CustomTickXAxis />} tickLine={false} axisLine={false} scale='point' padding={{ left: 10, right: 10 }}/>
+            <YAxis yAxisId="left" orientation="left" hide={true}  axisLine={false}/>
+            <YAxis yAxisId="right" orientation="right" stroke="#282D30" domain={[minPoids, maxPoids]} ticks={yAxisTicks} axisLine={false} tick={<CustomTickYAxis />} tickLine={false} />
             <Tooltip content={<CustomTooltip />} />
-            <Legend iconType="circle" verticalAlign="top" align="right" iconSize={8} wrapperStyle={{ right: 8, top:-30, fontColor: '#9B9EAC'}} />
-            <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" name="Poids (kg)" radius={[3.5, 3.5, 0, 0]} barSize={7} />
+            <Legend iconType="circle" verticalAlign="top" align="right" iconSize={8}  wrapperStyle={{ right: 8, top:-30}}/>
+            <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" name="Poids (kg)"  radius={[3.5, 3.5, 0, 0]} barSize={7} />
             <Bar yAxisId="left" dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" radius={[3.5, 3.5, 0, 0]} barSize={7} />
           </BarChart>
       </ResponsiveContainer>

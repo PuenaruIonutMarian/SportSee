@@ -6,15 +6,15 @@
   height: 320px;
   width: 100%;
 
-  h2 {
-    font-size: 1.5rem;
-    line-height: 2.4rem;
-    font-weight: 500;
-    padding: 20px 0 0 20px;
-    margin-top: 0;
-  }
-
   .chart {
+    .title {
+      font-size: 1.5rem;
+      line-height: 2.4rem;
+      font-weight: 500;
+      padding: 20px 0 0 20px;
+      margin-top: 0;
+    }
+
     .GraphTooltip {
       background-color: #e60000;
       width: 39px;
@@ -28,9 +28,8 @@
       font-weight: 500;
       line-height: 2.4rem;
     }
-  }
-
-  .recharts-legend-item-text {
-    color: #9b9eac !important;
+    .text-color-class {
+      color: #9b9eac !important;
+    }
   }
 }

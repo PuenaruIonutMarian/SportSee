@@ -15,9 +15,9 @@ const Dashboard = () => {
 
   if (loading) {
     return <Loader />;
-  } else if (error) {
-    return <Error />;
   } else if (!userData) {
+    return <Error />;
+  } else if (error) {
     return <ErrorMessage />;
   }
 

@@ -2,7 +2,7 @@ import {ApiService} from '../ApiService/ApiService';
 import {MockService} from '../MockService/MockService';
 
  // TRUE for mock data and FALSE for API
-export const isUsingMockData = true;
+export const isUsingMockData = false;
 
 class DataService {
   constructor() {

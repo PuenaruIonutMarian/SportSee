@@ -1,5 +1,5 @@
 import { ApiAxiosInstance, MockDataAxiosInstance } from '../AxiosInstance/AxiosInstance';
-import { isUsingMockData } from '../../services/DataService/DataService';
+import { isUsingMockData } from '../../config/AppConfig';
 
 export class BaseService {
   async fetchData(endpoint) {

@@ -20,10 +20,11 @@ class MockDataAdapter {
   }
 
   static adaptAverageSessions(data) {
-    return {
-      day: data?.day || 0,
-      sessionLength: data?.sessionLength || 0,
-    };
+    const frenchDays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    return data.sessions.map(session => ({
+      day: frenchDays[session.day - 1],
+      sessionLength: session.sessionLength
+    }))
   }
 
   static adaptUserPerformance(data) {

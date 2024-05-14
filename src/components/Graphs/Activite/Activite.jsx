@@ -2,6 +2,12 @@ import style from './Activite.module.scss';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import DataAdapter from '../../../utils/adapters/DataAdapter';
 
+
+//TODO: 1. De corectat culoarea la data 
+//      2. De corectat marginea stanga la coloana Y in dreata.
+//      3. De corectat marginea dreapta la efectul de hover la ultima data.
+
+
 const Activite = ({ userActivity }) => {
   const userData = DataAdapter.adaptUserActivity(userActivity.data);
 
@@ -20,15 +26,17 @@ const Activite = ({ userActivity }) => {
 
   return (
     <div className={style.activite}>
-      <ResponsiveContainer width="95%" height={240} style={{ margin: '0px 32px' }} className={style.chart}>
+      <ResponsiveContainer width="95%" height='80%' style={{ margin: '0px 32px' }} className={style.chart}>
         <h2 className={style.title} style={{ fontSize: '1.5rem', paddingLeft: '4px' }}>Activité quotidienne</h2>
-        <BarChart data={userData} barGap={8} barCategoryGap={1}     overflow={'hidden'}  margin={{ top: 5, right: 0, left: 1, bottom: 5 }}>
+        <BarChart data={userData} barGap={8} barCategoryGap={1}     overflow={'hidden'}  margin={{ top: 5, right: 0, left: 20, bottom: 5 }}>
           <CartesianGrid vertical={false} strokeDasharray="1 1" />
           {/* <XAxis dataKey="day" tick={{ fontSize: '1.4rem', dy: 15 }} tickLine={false} scale='point' padding={{ left: 10, right: 10 }} stroke="1 1" /> */}
-          <XAxis dataKey="day" tick={{ fontSize: '1.4rem', dy: 15 }} tickLine={false} padding={{ left: -45, right: -45 }} overflow={'hidden'} stroke="1 1" />
+
+          {/* AICI AM DE GASIT O CALE SA MODIFIC CULOAREA */}
+          <XAxis dataKey="day" tick={{ fontSize: '1.4rem', dy: 15, color: '#74798C' }} tickLine={false} padding={{ left: -45, right: -45 }} overflow={'hidden'} stroke="1 1" />
 
 
-          <YAxis yAxisId="kilogram" type="number" domain={['dataMin - 1', 'dataMax + 1']} tickCount={4} axisLine={false} orientation="right" tickLine={false} tick={{ fontSize: 14 }} dx={15} />
+          <YAxis yAxisId="kilogram" type="number" domain={['dataMin - 1', 'dataMax + 1']} tickCount={4} axisLine={false} orientation="right" tickLine={false} tick={{ fontSize: '1.4rem'}} dx={15} />
           <YAxis yAxisId="calories" orientation="left" hide axisLine={false} />
 
 

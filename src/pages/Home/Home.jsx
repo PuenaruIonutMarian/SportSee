@@ -4,7 +4,7 @@ import Karl from "../../assets/Karl.png";
 import Cecilia from "../../assets/Cecilia.png";
 import Thomas from "../../assets/Thomas.png";
 import Cristina from "../../assets/Cristina.png";
-import { isUsingMockData } from "../../services/DataService/DataService";
+import { isUsingMockData } from "../../config/AppConfig";
 
 
 let users;

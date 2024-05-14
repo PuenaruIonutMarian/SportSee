@@ -2,7 +2,7 @@ import style from './Header.module.scss';
 import DataAdapter from '../../utils/adapters/DataAdapter';
 
 const Header = ({ userData }) => {
-  const adaptedUserData = DataAdapter.adaptUserData(userData.data); 
+  const adaptedUserData = DataAdapter.adaptUserData(userData.data);
 
   return (
     <div className={style.header}>

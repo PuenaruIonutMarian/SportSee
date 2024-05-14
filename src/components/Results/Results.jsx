@@ -7,7 +7,7 @@ import DataAdapter from '../../utils/adapters/DataAdapter';
 
 const Results = ({ userData }) => {
   const adaptedData = DataAdapter.adaptUserData(userData.data);
-
+  
   return (
     <div className={style.results}>
       {renderDataItem(adaptedData.calorieCount, CaloriesIcon, 'Calories', 'kCal')}

@@ -3,9 +3,8 @@ import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip} from 'rech
 import DataAdapter from '../../../utils/adapters/DataAdapter';
 
 //TODO : 1. De corectat marginilele. 
-      // 2. De corectat bug-ul cu borderRadius stanga. 
-      // 3. De alungit pana jos culoarea la Area 
-      // 4.De micsorat grosimea la litere
+      // 2. De alungit pana jos culoarea la Area 
+      // 3.De micsorat grosimea la litere
 
 const Duree = ({ averageSessions }) => {
   const userSessionsData = DataAdapter.adaptAverageSessions(averageSessions.data);
@@ -23,9 +22,9 @@ const Duree = ({ averageSessions }) => {
 
   return (
     <div className={style.duree}>
-      <ResponsiveContainer width="100%" height="100%" borderRadius="5px">
+      <ResponsiveContainer width="100%" height="100%" >
       <h2 className={style.sessionTitle} >Durée moyenne des sessions</h2>
-        <AreaChart data={userSessionsData} margin={{ left: 0 }}
+        <AreaChart data={userSessionsData} 
           onMouseMove={(e) => {
             if (e.isTooltipActive === true) {
               let div = document.querySelector('.Duree_duree__sgir7 .recharts-responsive-container')
@@ -48,8 +47,7 @@ const Duree = ({ averageSessions }) => {
             dataKey="day"
             tickLine={false}
             axisLine={false}
-            stroke="red"
-            padding={{ right: 5, left: 5 }}
+            padding={{ right: 15, left: 15 }}
             tick={{ fontSize: '1.2rem', fontWeight: "100", lineHeight: "2.4rem", stroke: "#FFF", fill: "white", opacity: 0.8 }}
           />
           <YAxis

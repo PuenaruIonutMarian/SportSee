@@ -5,7 +5,7 @@ import Intensite from './Intensite/Intensite';
 import Score from './Score/Score';
 
 
-const Graphs = ({userActivity, averageSessions, userPerformance}) => {
+const Graphs = ({userActivity, averageSessions, userPerformance, userData}) => {
 // pentru celelalte grafice de introdus si averageSessions, userPerformance
 
   return (
@@ -13,7 +13,7 @@ const Graphs = ({userActivity, averageSessions, userPerformance}) => {
       <Activite userActivity={userActivity}/>
       <Duree averageSessions={averageSessions}/>
       <Intensite userPerformance={userPerformance}/>
-      <Score />
+      <Score userData={userData}/>
     </div>
   );
 }

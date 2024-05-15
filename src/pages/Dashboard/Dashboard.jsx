@@ -25,7 +25,7 @@ const Dashboard = () => {
     <main className={style.dashboard}>
       <Header userData={userData} />
       <div className={style.graphics}>
-        <Graphs userActivity={userActivity} averageSessions={averageSessions} userPerformance={userPerformance} />
+        <Graphs userActivity={userActivity} averageSessions={averageSessions} userPerformance={userPerformance} userData={userData}/>
         <Results userData={userData} />
       </div>
     </main>

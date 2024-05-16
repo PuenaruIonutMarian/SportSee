@@ -5,17 +5,12 @@ import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 //TODO : fontsize, font width, marimi grafice
 
 const Score = ({userData}) => {
-// Adapt user data using DataAdapter
   const adaptedData = DataAdapter.adaptUserData(userData.data);
 
-  let score = [{ name: 'Score', value: adaptedData.score }];
-
-  // If todayScore is close to 1, set the remaining score to 0
-  if (adaptedData.score >= 0.99) {
-    score.push({ name: 'Remaining', value: 0 });
-  } else {
-    score.push({ name: 'Remaining', value: 1 - adaptedData.score });
-  }
+  const score = [
+    { name: 'Score', value: adaptedData.score },
+    { name: 'Remaining', value: 1 - adaptedData.score }
+  ];
 
   return (
     <div className={style.score}>
@@ -28,7 +23,6 @@ const Score = ({userData}) => {
             outerRadius={85}
             startAngle={90}
             endAngle={360 + 90}
-            background={{ fill: '#FFFFFF' }}
           >
             {score.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={index === 0 ? '#ff0000' : '#FBFBFB'} cornerRadius={10} />

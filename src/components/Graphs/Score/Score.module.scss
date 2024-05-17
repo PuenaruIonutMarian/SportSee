@@ -4,39 +4,36 @@
   height: 263px;
   background: #fbfbfb;
   border-radius: 5px;
-  // background: #f00;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
 
   .scoreTitle {
     position: absolute;
-    left: 20%;
-    top: 15%;
-    transform: translate(-50%, -50%);
+    left: 3rem;
+    top: 0.4rem;
     font-weight: 500;
-    font-size: 15px;
-    line-height: 24px;
+    font-size: 1.5rem;
+    line-height: 2.4rem;
     color: #20253a;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .scoreText {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
-    font-size: 12px;
-    line-height: 20px;
-    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 500;
     text-align: center;
     color: #74798c;
     background: #fbfbfb;
-    border-radius: 50%;
-    padding: 2.3rem 2.7rem;
+    padding: 0rem 2.7rem;
 
     .scoreTextValue {
-      color: rgba(0, 0, 0, 0.8);
+      color: #282d30;
       font-weight: 700;
-      font-size: 26px;
+      font-size: 2.6rem;
     }
   }
 }

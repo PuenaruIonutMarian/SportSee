@@ -16,4 +16,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  p {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+  .message {
+    p {
+      top: 65%;
+    }
+  }
 }

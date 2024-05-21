@@ -1,9 +1,11 @@
 import style from './Duree.module.scss';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip} from 'recharts';
 import DataAdapter from '../../../utils/adapters/DataAdapter';
+import NoData from '../../Error/NoData';
 
 const Duree = ({ averageSessions }) => {
   const userSessionsData = DataAdapter.adaptAverageSessions(averageSessions.data);
+    // const userSessionsData = 0;
 
   function SessionsToolType({ active, payload }) {
     if (active) {
@@ -18,6 +20,8 @@ const Duree = ({ averageSessions }) => {
 
   return (
     <div className={style.duree}>
+     {!userSessionsData ? (<NoData />) : (
+      <>
       <ResponsiveContainer width="100%" height="100%" >
       <h2 className={style.sessionTitle} >Durée moyenne des sessions</h2>
         <AreaChart
@@ -38,8 +42,8 @@ const Duree = ({ averageSessions }) => {
         >
         <defs>
           <linearGradient id="linear-gradient" x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="20%" stop-color="rgba(255, 255, 255, 0.7)" />
-            <stop offset="81.04%" stop-color="rgba(255, 255, 255, 0.403)" />
+            <stop offset="20%" stopColor="rgba(255, 255, 255, 0.7)" />
+            <stop offset="81.04%" stopColor="rgba(255, 255, 255, 0.403)" />
           </linearGradient>
         </defs>
           <XAxis
@@ -68,7 +72,9 @@ const Duree = ({ averageSessions }) => {
         </AreaChart>
       </ResponsiveContainer>
       <div className={style.dureeBackground}></div>
-    </div>
+     </> 
+     )}
+     </div>
   );
 };
 

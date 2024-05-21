@@ -1,0 +1,18 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  margin: 10.9rem;
+  gap: 7.7rem;
+
+  .graphics {
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1380px) {
+  .dashboard {
+    margin-top: 2rem;
+    margin-left: 4rem;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,52 @@
+@use '../../../styles/variables.scss' as *;
+
+.resultsDataItem {
+  background-color: $background-graph;
+  width: 22.6rem;
+  height: 12.4rem;
+  display: flex;
+  gap: 2.4rem;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 3.9rem;
+  border-radius: 0.5rem;
+  position: relative;
+
+  .iconWrapper {
+    margin-left: 3.2rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    line-height: 2.4rem;
+    gap: 0.5rem;
+
+    span {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: $font-color_gray;
+      margin: 0;
+      text-align: left;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1380px) {
+  .resultsDataItem {
+    width: 18rem;
+    height: 10rem;
+    gap: 1.9rem;
+
+    .iconWrapper {
+      margin-left: 2rem;
+    }
+  }
+}

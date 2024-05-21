@@ -7,7 +7,6 @@
   padding: 0 20px;
   height: 91px;
   background-color: $background-navbar;
-  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   div {
     width: 14.79rem;
@@ -65,6 +64,23 @@
       &:active {
         color: $font-color_red;
       }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1380px) {
+  .navbar {
+    height: 6.5rem;
+
+    div {
+      img {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+    }
+
+    ul li {
+      font-size: 2rem;
     }
   }
 }

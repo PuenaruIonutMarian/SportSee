@@ -1,10 +1,12 @@
 import style from './Activite.module.scss';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import DataAdapter from '../../../utils/adapters/DataAdapter';
+import NoData from '../../Error/NoData';
 
 
 const Activite = ({ userActivity }) => {
   const userData = DataAdapter.adaptUserActivity(userActivity.data);
+  // const userData = 0;
 
   // Custom tooltip component
   const CustomTooltip = ({ active, payload }) => {
@@ -18,9 +20,13 @@ const Activite = ({ userActivity }) => {
     }
     return null;
   };
+    if (!userData || userData.length === 0) {
+    return <NoData />;
+  }
 
   return (
     <div className={style.activite}>
+    {!userData ? (<NoData />) : (
       <ResponsiveContainer width="92%" height='75%' className={style.chart}>
         <h2 className={style.title}>Activité quotidienne</h2>
         <BarChart data={userData} barGap={8} barCategoryGap={1} >
@@ -78,6 +84,7 @@ const Activite = ({ userActivity }) => {
           />
         </BarChart>
       </ResponsiveContainer>
+    )}
     </div>
   );
 };

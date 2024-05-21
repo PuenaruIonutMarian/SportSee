@@ -1,5 +1,3 @@
-
-
 class MockDataAdapter {
   static adaptUserData(data) {
     return {

@@ -5,35 +5,42 @@
   background: #fbfbfb;
   border-radius: 5px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
+}
 
-  .scoreTitle {
-    position: absolute;
-    left: 3rem;
-    top: 0.4rem;
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 2.4rem;
-    color: #20253a;
-    font-weight: 500;
-  }
+.scoreTitle {
+  position: absolute;
+  left: 3rem;
+  top: 0.4rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  color: #20253a;
+  background: #fbfbfb;
+}
 
-  .scoreText {
-    position: absolute;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -50%);
-    font-size: 1.6rem;
-    line-height: 2.6rem;
-    font-weight: 500;
-    text-align: center;
-    color: #74798c;
-    background: #fbfbfb;
-    padding: 0rem 2.7rem;
+.scoreText {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: #74798c;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 13.7rem;
+  height: 13.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-    .scoreTextValue {
-      color: #282d30;
-      font-weight: 700;
-      font-size: 2.6rem;
-    }
-  }
+.scoreTextValue {
+  margin-bottom: 0.5rem;
+  color: #282d30;
+  font-weight: 700;
+  font-size: 2.6rem;
 }

@@ -1,9 +1,10 @@
 @use './reset.scss' as *;
 @use './variables.scss' as *;
 @use './fonts.scss' as *;
+@use '../components/Dashboard/Dashboard.module.scss' as *;
 
 html {
-  // This defines what 1rem is
+  // Deffinition pour 1 rem = 10px
   font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
 }
 

@@ -24,3 +24,13 @@
     margin: 0;
   }
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+  .header {
+    gap: 1.8rem;
+
+    h1 {
+      font-size: 3.5rem;
+    }
+  }
+}

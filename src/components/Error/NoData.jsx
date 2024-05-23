@@ -1,10 +1,13 @@
-import React from 'react'
 import style from './NoData.module.scss'
 
+/**
+ * Composant NoData affiché lorsqu'aucune donnée n'est disponible.
+ * @returns {JSX.Element} Composant NoData.
+ */
 const NoData = () => {
   return (
     <div className={style.noData}>
-    <p>NoData</p>
+      <p>Aucune donnée disponible</p>
     </div>
   )
 }

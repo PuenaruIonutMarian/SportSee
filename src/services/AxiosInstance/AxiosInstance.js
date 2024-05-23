@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 // URL de base de l'API
-// const apiBaseUrl = process.env.REACT_APP_BASE_URL;
-const apiBaseUrl = 'http://localhost:3000/'
+const apiBaseUrl = process.env.REACT_APP_BASE_URL
+// const apiBaseUrl = 'http://localhost:3000/'
+
 // URL de base des données simulées
 const mockDataBaseUrl = '/mockData/mockDatas.json'
 

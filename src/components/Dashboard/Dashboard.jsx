@@ -4,7 +4,6 @@ import style from './Dashboard.module.scss'
 import useHostingData from '../../utils/hooks/DataHook'
 import { useParams } from 'react-router-dom'
 import Loader from '../Loader/Loader'
-import ErrorMessage from '../Error/ErrorMessage'
 
 const Dashboard = () => {
   // Récupération de l'identifiant de l'utilisateur depuis les paramètres d'URL
@@ -20,10 +19,6 @@ const Dashboard = () => {
     loading,
     error,
   } = useHostingData(userId)
-
-  if (error) {
-    return <ErrorMessage />
-  }
 
   return (
     <main className={style.dashboard}>

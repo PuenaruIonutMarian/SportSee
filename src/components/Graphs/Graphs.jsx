@@ -14,6 +14,7 @@ import Result from './Result/Result'
  * @param {Object} props.averageSessions - Average sessions data.
  * @param {Object} props.userPerformance - User performance data.
  * @param {Object} props.userData - User data.
+ * @param {boolean} props.error - Error object.
  * @returns {JSX.Element} The Graphs component.
  */
 const Graphs = ({
@@ -21,20 +22,21 @@ const Graphs = ({
   averageSessions,
   userPerformance,
   userData,
+  error,
 }) => {
   return (
     <div className={styles.container}>
       <div className={styles.graphs}>
-        <Activite userActivity={userActivity} />
-        <Duree averageSessions={averageSessions} />
-        <Intensite userPerformance={userPerformance} />
-        <Score userData={userData} />
+        <Activite userActivity={userActivity} error={error} />
+        <Duree averageSessions={averageSessions} error={error} />
+        <Intensite userPerformance={userPerformance} error={error} />
+        <Score userData={userData} error={error} />
       </div>
       <div className={styles.results}>
-        <Result data={userData} category="calories" />
-        <Result data={userData} category="proteines" />
-        <Result data={userData} category="glucides" />
-        <Result data={userData} category="lipides" />
+        <Result data={userData} category="calories" error={error} />
+        <Result data={userData} category="proteines" error={error} />
+        <Result data={userData} category="glucides" error={error} />
+        <Result data={userData} category="lipides" error={error} />
       </div>
     </div>
   )
@@ -45,6 +47,7 @@ Graphs.propTypes = {
   averageSessions: PropTypes.object.isRequired,
   userPerformance: PropTypes.object.isRequired,
   userData: PropTypes.object.isRequired,
+  error: PropTypes.object,
 }
 
 export default Graphs

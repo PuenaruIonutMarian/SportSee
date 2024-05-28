@@ -15,14 +15,17 @@ import NoData from '../../Error/NoData'
  * Composant Duree affichant la durée moyenne des sessions de l'utilisateur.
  * @param {Object} props - Les propriétés passées au composant.
  * @param {Object} props.averageSessions - Les données des sessions moyennes de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
  * @returns {JSX.Element} Composant Duree.
  */
-const Duree = ({ averageSessions }) => {
+const Duree = ({ averageSessions, error }) => {
+  let userSessionsData
   // Adapter les données des sessions moyennes de l'utilisateur
-  const userSessionsData = DataAdapter.adaptAverageSessions(
-    averageSessions.data,
-  )
-  // const userSessionsData = 0;
+  try {
+    userSessionsData = DataAdapter.adaptAverageSessions(averageSessions.data)
+  } catch (e) {
+    userSessionsData = null
+  }
 
   /**
    * Composant SessionsToolType pour personnaliser le tooltip des sessions.
@@ -54,7 +57,7 @@ const Duree = ({ averageSessions }) => {
   return (
     <div className={style.duree}>
       {/* Afficher le composant NoData si les données sont inexistantes */}
-      {!userSessionsData ? (
+      {!userSessionsData || error ? (
         <NoData />
       ) : (
         <>
@@ -150,6 +153,7 @@ Duree.propTypes = {
       ).isRequired, // Les données des sessions
     }).isRequired, // Les données des sessions moyennes de l'utilisateur
   }).isRequired,
+  error: PropTypes.string,
 }
 
 export default Duree

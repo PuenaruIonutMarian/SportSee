@@ -17,11 +17,19 @@ import NoData from '../../Error/NoData'
  * Composant Activite affichant l'activité quotidienne de l'utilisateur.
  * @param {Object} props - Les propriétés passées au composant.
  * @param {Object} props.userActivity - Les données de l'activité quotidienne de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
  * @returns {JSX.Element} Composant Activite.
  */
-const Activite = ({ userActivity }) => {
+const Activite = ({ userActivity, error }) => {
+  let userData
   // Adapter les données de l'activité quotidienne de l'utilisateur
-  const userData = DataAdapter.adaptUserActivity(userActivity.data)
+  // Try to adapt user activity data
+  try {
+    userData = DataAdapter.adaptUserActivity(userActivity.data)
+  } catch (e) {
+    // If there's an error in adapting the data, set userData to null
+    userData = null
+  }
 
   // Composant CustomTooltip pour personnaliser le tooltip des barres
   const CustomTooltip = ({ active, payload }) => {
@@ -45,7 +53,7 @@ const Activite = ({ userActivity }) => {
   }
 
   // Afficher le composant NoData si les données sont inexistantes ou vides
-  if (!userData || userData.length === 0) {
+  if (!userData || userData.length === 0 || error) {
     return <NoData />
   }
 
@@ -142,6 +150,7 @@ Activite.propTypes = {
       ).isRequired, // Les données de l'activité quotidienne
     }).isRequired, // Les données de l'activité quotidienne de l'utilisateur
   }).isRequired,
+  error: PropTypes.string,
 }
 
 export default Activite

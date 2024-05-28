@@ -2,11 +2,12 @@ import { useState, useEffect, useContext } from 'react'
 import { DataContext } from '../../utils/context/DataContext'
 
 /**
- * Hook personnalisé pour récupérer les données d'hébergement d'un utilisateur.
- * @param {string} userId - L'identifiant de l'utilisateur.
- * @returns {Object} Un objet contenant les données d'utilisateur, d'activité, de sessions moyennes,
- * de performance utilisateur, l'état de chargement et l'éventuelle erreur.
- */
+
+Hook personnalisé pour récupérer les données d'hébergement pour un utilisateur.
+@param {string} userId - L'ID de l'utilisateur.
+@returns {Object} Un objet contenant les données utilisateur, l'activité, les sessions moyennes,
+les données de performance, l'état de chargement et les erreurs individuelles.
+*/
 const useHostingData = (userId) => {
   const { dataService } = useContext(DataContext)
   const [userData, setUserData] = useState(null)
@@ -14,57 +15,104 @@ const useHostingData = (userId) => {
   const [averageSessions, setAverageSessions] = useState(null)
   const [userPerformance, setUserPerformance] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [errors, setErrors] = useState({
+    userData: null,
+    userActivity: null,
+    averageSessions: null,
+    userPerformance: null,
+  })
 
   useEffect(() => {
     /**
-     * Fonction asynchrone pour récupérer les données d'utilisateur, d'activité,
-     * de sessions moyennes et de performance utilisateur.
+     * Fonction pour récupérer les données utilisateur.
      */
-    const fetchData = async () => {
+    const fetchUserData = async () => {
       try {
-        const userData = await dataService.getUserData(userId)
-        const userActivity = await dataService.getUserActivity(userId)
-        const averageSessions = await dataService.getUserAverageSessions(userId)
-        const userPerformance = await dataService.getUserPerformance(userId)
-
-        // Met à jour les états avec les données récupérées
-        setUserData(userData)
-        setUserActivity(userActivity)
-        setAverageSessions(averageSessions)
-        setUserPerformance(userPerformance)
-        setLoading(false)
+        const data = await dataService.getUserData(userId)
+        setUserData(data)
       } catch (error) {
-        // Gère les erreurs de récupération des données
-        console.error('Erreur lors de la récupération des données :', error)
-        setError(error)
-        setLoading(false)
+        console.error('Error fetching user data:', error)
+        setErrors((prev) => ({ ...prev, userData: error }))
       }
     }
 
-    // Appelle la fonction de récupération des données
+    /**
+     * Fonction pour récupérer l'activité utilisateur.
+     */
+    const fetchUserActivity = async () => {
+      try {
+        const data = await dataService.getUserActivity(userId)
+        setUserActivity(data)
+      } catch (error) {
+        console.error('Error fetching user activity:', error)
+        setErrors((prev) => ({ ...prev, userActivity: error }))
+      }
+    }
+
+    /**
+     * Fonction pour récupérer les sessions moyennes utilisateur.
+     */
+    const fetchAverageSessions = async () => {
+      try {
+        const data = await dataService.getUserAverageSessions(userId)
+        setAverageSessions(data)
+      } catch (error) {
+        console.error('Error fetching average sessions:', error)
+        setErrors((prev) => ({ ...prev, averageSessions: error }))
+      }
+    }
+
+    /**
+     * Fonction pour récupérer les performances utilisateur.
+     */
+    const fetchUserPerformance = async () => {
+      try {
+        const data = await dataService.getUserPerformance(userId)
+        setUserPerformance(data)
+      } catch (error) {
+        console.error('Error fetching user performance:', error)
+        setErrors((prev) => ({ ...prev, userPerformance: error }))
+      }
+    }
+
+    /**
+     * Fonction pour récupérer toutes les données utilisateur.
+     */
+    const fetchData = async () => {
+      setLoading(true)
+      await Promise.all([
+        fetchUserData(),
+        fetchUserActivity(),
+        fetchAverageSessions(),
+        fetchUserPerformance(),
+      ])
+      setLoading(false)
+    }
+
     fetchData()
 
-    // Nettoyage des états lors du démontage du composant
     return () => {
       setUserData(null)
       setUserActivity(null)
       setAverageSessions(null)
       setUserPerformance(null)
       setLoading(true)
-      setError(null)
+      setErrors({
+        userData: null,
+        userActivity: null,
+        averageSessions: null,
+        userPerformance: null,
+      })
     }
   }, [dataService, userId])
 
-  // Retourne les données d'utilisateur, d'activité, de sessions moyennes,
-  // de performance utilisateur, l'état de chargement et l'éventuelle erreur
   return {
     userData,
     userActivity,
     averageSessions,
     userPerformance,
     loading,
-    error,
+    errors,
   }
 }
 

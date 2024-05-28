@@ -14,16 +14,22 @@ import NoData from '../../Error/NoData'
  * Composant Intensite affichant les performances de l'utilisateur dans différentes catégories d'intensité.
  * @param {Object} props - Les propriétés passées au composant.
  * @param {Object} props.userPerformance - Les données de performance de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
  * @returns {JSX.Element} Composant Intensite.
  */
-const Intensite = ({ userPerformance }) => {
+const Intensite = ({ userPerformance, error }) => {
+  let data
   // Adapter les données de performance de l'utilisateur
-  const data = DataAdapter.adaptUserPerformance(userPerformance.data)
+  try {
+    data = DataAdapter.adaptUserPerformance(userPerformance.data)
+  } catch (error) {
+    data = null
+  }
 
   return (
     <div className={style.intensite}>
       {/* Afficher le composant NoData si les données sont inexistantes */}
-      {!data ? (
+      {!data || error ? (
         <NoData />
       ) : (
         <>
@@ -101,6 +107,7 @@ Intensite.propTypes = {
       ).isRequired, // Les données de performance dans chaque catégorie
     }).isRequired, // Les données de performance de l'utilisateur
   }).isRequired,
+  error: PropTypes.string,
 }
 
 export default Intensite

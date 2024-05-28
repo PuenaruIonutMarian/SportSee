@@ -8,22 +8,23 @@ import NoData from '../../Error/NoData'
  * Composant Score affichant le score de l'utilisateur sous forme de diagramme circulaire.
  * @param {Object} props - Les propriétés passées au composant.
  * @param {Object} props.userData - Les données de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
  * @returns {JSX.Element} Composant Score.
  */
-const Score = ({ userData }) => {
-  // Adapter les données de l'utilisateur
-  const adaptedData = DataAdapter.adaptUserData(userData.data)
+const Score = ({ userData, error }) => {
+  let adaptedData
 
-  // Créer les données pour le diagramme circulaire
-  const score = [
-    { name: 'Score', value: adaptedData.score },
-    { name: 'Restant', value: 1 - adaptedData.score },
-  ]
+  // Adapter les données de l'utilisateur
+  try {
+    adaptedData = DataAdapter.adaptUserData(userData.data)
+  } catch (e) {
+    adaptedData = null
+  }
 
   return (
     <div className={style.score}>
       {/* Afficher un message d'erreur si les données adaptées sont inexistantes */}
-      {!adaptedData ? (
+      {!adaptedData || error ? (
         <NoData />
       ) : (
         <>
@@ -32,14 +33,20 @@ const Score = ({ userData }) => {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={score}
+                data={[
+                  { name: 'Score', value: adaptedData.score },
+                  { name: 'Restant', value: 1 - adaptedData.score },
+                ]}
                 dataKey="value"
                 innerRadius={70}
                 outerRadius={85}
                 startAngle={90}
                 endAngle={360 + 90}
               >
-                {score.map((entry, index) => (
+                {[
+                  { name: 'Score', value: adaptedData.score },
+                  { name: 'Restant', value: 1 - adaptedData.score },
+                ].map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={index === 0 ? '#ff0000' : '#FBFBFB'}
@@ -66,10 +73,7 @@ const Score = ({ userData }) => {
 // Définir les types de propriétés attendues
 Score.propTypes = {
   userData: PropTypes.object.isRequired, // Les données de l'utilisateur
-  adaptedData: PropTypes.shape({
-    score: PropTypes.number.isRequired, // Le score de l'utilisateur
-    // Ajoutez ici d'autres PropTypes pour d'autres propriétés si nécessaire
-  }),
+  error: PropTypes.bool,
 }
 
 export default Score

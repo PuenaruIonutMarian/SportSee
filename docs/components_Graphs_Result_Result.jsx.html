@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Graphs/Result/Result.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Graphs/Result/Result.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types'
+import Icon from '../../Icon/Icon'
+import { ReactComponent as CaloriesIcon } from '../../../assets/calories-icon.svg'
+import { ReactComponent as ProteinIcon } from '../../../assets/protein-icon.svg'
+import { ReactComponent as CarbsIcon } from '../../../assets/carbs-icon.svg'
+import { ReactComponent as FatIcon } from '../../../assets/fat-icon.svg'
+import style from './Result.module.scss'
+import DataAdapter from '../../../utils/adapters/DataAdapter'
+import NoData from '../../Error/NoData'
+
+/**
+ * Composant Result affichant les données nutritionnelles telles que les calories, les protéines, les glucides et les lipides.
+ * @param {Object} props - Les propriétés passées au composant.
+ * @param {Object} props.data - Les données nutritionnelles de l'utilisateur.
+ * @param {string} props.category - La catégorie de données à afficher ('calories', 'proteines', 'glucides' ou 'lipides').
+ * @param {boolean} props.error - Indique si une erreur est survenue.
+ * @returns {JSX.Element} Composant Result.
+ */
+const Result = ({ data, category, error }) => {
+  let adaptedData
+  // Adapter les données de l'utilisateur
+  try {
+    adaptedData = DataAdapter.adaptUserData(data.data)
+  } catch (err) {
+    adaptedData = null
+  }
+
+  // Définir les catégories de données avec les icônes associées
+  const categories = {
+    calories: {
+      count: adaptedData ? adaptedData.calorieCount : null,
+      icon: CaloriesIcon,
+      label: 'Calories',
+      unit: 'kCal',
+    },
+    proteines: {
+      count: adaptedData ? adaptedData.proteinCount : null,
+      icon: ProteinIcon,
+      label: 'Protéines',
+      unit: 'g',
+    },
+    glucides: {
+      count: adaptedData ? adaptedData.carbohydrateCount : null,
+      icon: CarbsIcon,
+      label: 'Glucides',
+      unit: 'g',
+    },
+    lipides: {
+      count: adaptedData ? adaptedData.lipidCount : null,
+      icon: FatIcon,
+      label: 'Lipides',
+      unit: 'g',
+    },
+  }
+
+  // Récupérer les données de la catégorie spécifiée
+  const categoryData = categories[category]
+
+  return (
+    &lt;div className={style.resultsDataItem}>
+      {!categoryData.count || error ? (
+        &lt;NoData style={{ color: 'white' }} />
+      ) : (
+        &lt;>
+          {/* Afficher l'icône de la catégorie */}
+          &lt;div className={style.iconWrapper}>
+            &lt;Icon
+              IconComponent={categoryData.icon}
+              alt={`${categoryData.label} Icon`}
+            />
+          &lt;/div>
+          {/* Afficher le nombre et l'unité de la catégorie */}
+          &lt;div>
+            &lt;span>
+              {formatDataCount(categoryData.count)}
+              {categoryData.unit}
+            &lt;/span>
+            &lt;p className={style.textLabel}>{categoryData.label}&lt;/p>
+          &lt;/div>
+        &lt;/>
+      )}
+    &lt;/div>
+  )
+}
+
+/**
+ * Formater le nombre de données en utilisant un format spécifique.
+ * @param {number} dataCount - Le nombre de données à formater.
+ * @returns {string|null} Le nombre formaté ou null si le nombre est inexistant.
+ */
+const formatDataCount = (dataCount) => {
+  return dataCount
+    ? new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 4 }).format(
+        dataCount,
+      )
+    : null
+}
+
+// Définir les types de propriétés attendues
+Result.propTypes = {
+  data: PropTypes.shape({
+    data: PropTypes.object.isRequired,
+  }).isRequired, // Les données nutritionnelles de l'utilisateur
+  category: PropTypes.oneOf(['calories', 'proteines', 'glucides', 'lipides'])
+    .isRequired, // La catégorie de données à afficher
+  error: PropTypes.string,
+}
+
+export default Result
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Error.html">Error</a></li><li><a href="module-Graphs.html">Graphs</a></li><li><a href="module-Loader.html">Loader</a></li></ul><h3>Classes</h3><ul><li><a href="APIDataAdapter.html">APIDataAdapter</a></li><li><a href="BaseService.html">BaseService</a></li><li><a href="DataAdapter.html">DataAdapter</a></li><li><a href="DataService.html">DataService</a></li><li><a href="MockDataAdapter.html">MockDataAdapter</a></li><li><a href="MockService.html">MockService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Activite">Activite</a></li><li><a href="global.html#CustomTick">CustomTick</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataProvider">DataProvider</a></li><li><a href="global.html#Duree">Duree</a></li><li><a href="global.html#Intensite">Intensite</a></li><li><a href="global.html#NoData">NoData</a></li><li><a href="global.html#Result">Result</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#formatDataCount">formatDataCount</a></li><li><a href="global.html#useHostingData">useHostingData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 28 2024 16:07:28 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

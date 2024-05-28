@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Graphs/Duree/Duree.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Graphs/Duree/Duree.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types'
+import style from './Duree.module.scss'
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+} from 'recharts'
+import DataAdapter from '../../../utils/adapters/DataAdapter'
+import NoData from '../../Error/NoData'
+
+/**
+ * Composant Duree affichant la durée moyenne des sessions de l'utilisateur.
+ * @param {Object} props - Les propriétés passées au composant.
+ * @param {Object} props.averageSessions - Les données des sessions moyennes de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
+ * @returns {JSX.Element} Composant Duree.
+ */
+const Duree = ({ averageSessions, error }) => {
+  let userSessionsData
+  // Adapter les données des sessions moyennes de l'utilisateur
+  try {
+    userSessionsData = DataAdapter.adaptAverageSessions(averageSessions.data)
+  } catch (e) {
+    userSessionsData = null
+  }
+
+  /**
+   * Composant SessionsToolType pour personnaliser le tooltip des sessions.
+   * @param {Object} props - Les propriétés passées au composant.
+   * @param {boolean} props.active - Indique si le tooltip est actif.
+   * @param {Object[]} props.payload - Les données du payload.
+   * @returns {JSX.Element|null} Composant SessionsToolType.
+   */
+  function SessionsToolType({ active, payload }) {
+    if (active) {
+      return (
+        &lt;div className={style.tooltipWrapper}>
+          &lt;p className={style.tooltipValue}>{payload[0].value}min&lt;/p>
+        &lt;/div>
+      )
+    }
+    return null
+  }
+
+  SessionsToolType.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.number.isRequired,
+      }),
+    ),
+  }
+
+  return (
+    &lt;div className={style.duree}>
+      {/* Afficher le composant NoData si les données sont inexistantes */}
+      {!userSessionsData || error ? (
+        &lt;NoData />
+      ) : (
+        &lt;>
+          {/* Afficher le graphique d'aire de la durée moyenne des sessions */}
+          &lt;ResponsiveContainer width="100%" height="100%">
+            &lt;h2 className={style.sessionTitle}>Durée moyenne des sessions&lt;/h2>
+            &lt;AreaChart
+              className={style.areaChart}
+              data={userSessionsData}
+              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+              onMouseMove={(e) => {
+                if (e.isTooltipActive === true) {
+                  let div = document.querySelector(
+                    `.${style.duree} .recharts-responsive-container`,
+                  )
+                  let windowWidth = div.clientWidth
+                  let mouseXpercentage = Math.round(
+                    (e.activeCoordinate.x / windowWidth) * 100,
+                  )
+                  div.style.background = `linear-gradient(90deg, rgba(255,0,0,1) ${mouseXpercentage}%, rgba(0,0,0,0.0975) ${mouseXpercentage}%, rgba(0,0,0,0.0975) 100%)`
+                }
+              }}
+            >
+              &lt;defs>
+                &lt;linearGradient
+                  id="linear-gradient"
+                  x1="100%"
+                  y1="0%"
+                  x2="0%"
+                  y2="0%"
+                >
+                  &lt;stop offset="20%" stopColor="rgba(255, 255, 255, 0.7)" />
+                  &lt;stop
+                    offset="81.04%"
+                    stopColor="rgba(255, 255, 255, 0.403)"
+                  />
+                &lt;/linearGradient>
+              &lt;/defs>
+              &lt;XAxis
+                className={style.rechartsXAxis}
+                type="category"
+                dataKey="day"
+                tickLine={false}
+                axisLine={false}
+                tick={{
+                  dx: -20,
+                  fontSize: '1.2rem',
+                  fontWeight: '300',
+                  lineHeight: '2.4rem',
+                  stroke: 'rgba(255, 255, 255, 0.3)',
+                  fill: 'rgba(255, 255, 255, 0.3)',
+                }}
+              />
+              &lt;YAxis
+                dataKey="sessionLength"
+                domain={[0, 'dataMax + 30']}
+                hide={true}
+              />
+              &lt;Tooltip content={&lt;SessionsToolType />} cursor={false} />
+              &lt;Area
+                type="monotone"
+                dataKey="sessionLength"
+                strokeWidth={2}
+                fill="rgba(255, 255, 255, 0.11)"
+                stroke="url(#linear-gradient)"
+                dot={false}
+                activeDot={{
+                  r: 4,
+                  fill: 'white',
+                  stroke: 'rgba(255, 255, 255, 0.3)',
+                  strokeWidth: 8,
+                }}
+              />
+            &lt;/AreaChart>
+          &lt;/ResponsiveContainer>
+          &lt;div className={style.dureeBackground}>&lt;/div>
+        &lt;/>
+      )}
+    &lt;/div>
+  )
+}
+
+// Définir les types de propriétés attendues
+Duree.propTypes = {
+  averageSessions: PropTypes.shape({
+    data: PropTypes.shape({
+      sessions: PropTypes.arrayOf(
+        PropTypes.shape({
+          day: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired,
+          sessionLength: PropTypes.number.isRequired, // Durée de la session
+        }),
+      ).isRequired, // Les données des sessions
+    }).isRequired, // Les données des sessions moyennes de l'utilisateur
+  }).isRequired,
+  error: PropTypes.string,
+}
+
+export default Duree
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Error.html">Error</a></li><li><a href="module-Graphs.html">Graphs</a></li><li><a href="module-Loader.html">Loader</a></li></ul><h3>Classes</h3><ul><li><a href="APIDataAdapter.html">APIDataAdapter</a></li><li><a href="BaseService.html">BaseService</a></li><li><a href="DataAdapter.html">DataAdapter</a></li><li><a href="DataService.html">DataService</a></li><li><a href="MockDataAdapter.html">MockDataAdapter</a></li><li><a href="MockService.html">MockService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Activite">Activite</a></li><li><a href="global.html#CustomTick">CustomTick</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataProvider">DataProvider</a></li><li><a href="global.html#Duree">Duree</a></li><li><a href="global.html#Intensite">Intensite</a></li><li><a href="global.html#NoData">NoData</a></li><li><a href="global.html#Result">Result</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#formatDataCount">formatDataCount</a></li><li><a href="global.html#useHostingData">useHostingData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 28 2024 16:07:28 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

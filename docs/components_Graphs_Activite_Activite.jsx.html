@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Graphs/Activite/Activite.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Graphs/Activite/Activite.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types'
+import style from './Activite.module.scss'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  CartesianGrid,
+} from 'recharts'
+import DataAdapter from '../../../utils/adapters/DataAdapter'
+import NoData from '../../Error/NoData'
+
+/**
+ * Composant Activite affichant l'activité quotidienne de l'utilisateur.
+ * @param {Object} props - Les propriétés passées au composant.
+ * @param {Object} props.userActivity - Les données de l'activité quotidienne de l'utilisateur.
+ * @param {boolean} props.error - Indique si une erreur est survenue.
+ * @returns {JSX.Element} Composant Activite.
+ */
+const Activite = ({ userActivity, error }) => {
+  let userData
+  // Adapter les données de l'activité quotidienne de l'utilisateur
+  // Try to adapt user activity data
+  try {
+    userData = DataAdapter.adaptUserActivity(userActivity.data)
+  } catch (e) {
+    // If there's an error in adapting the data, set userData to null
+    userData = null
+  }
+
+  // Composant CustomTooltip pour personnaliser le tooltip des barres
+  const CustomTooltip = ({ active, payload }) => {
+    if (active &amp;&amp; payload &amp;&amp; payload.length) {
+      return (
+        &lt;div className={style.GraphTooltip}>
+          &lt;p className={style.Tooltip}>{payload[0].value}kg&lt;/p>
+          &lt;p>{payload[1].value}kcal&lt;/p>
+        &lt;/div>
+      )
+    }
+    return null
+  }
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      }),
+    ),
+  }
+
+  // Afficher le composant NoData si les données sont inexistantes ou vides
+  if (!userData || userData.length === 0 || error) {
+    return &lt;NoData />
+  }
+
+  return (
+    &lt;div className={style.activite}>
+      {/* Afficher le graphique d'activité quotidienne */}
+      {!userData ? (
+        &lt;NoData />
+      ) : (
+        &lt;ResponsiveContainer width="92%" height="75%" className={style.chart}>
+          &lt;h2 className={style.title}>Activité quotidienne&lt;/h2>
+          &lt;BarChart data={userData} barGap={8} barCategoryGap={1}>
+            &lt;CartesianGrid vertical={false} strokeDasharray="1 1" />
+            &lt;XAxis
+              dataKey="day"
+              tick={{ fontSize: '1.4rem', dy: 15 }}
+              tickLine={false}
+              padding={{ left: -29, right: -30 }}
+              overflow={'hidden'}
+              stroke="1 1"
+              style={{ fontSize: '1.4rem', fill: '#74798c', fontWeight: '500' }}
+            />
+            &lt;YAxis
+              yAxisId="kilogram"
+              type="number"
+              domain={['dataMin - 1', 'dataMax + 1']}
+              tickCount={4}
+              axisLine={false}
+              orientation="right"
+              tickLine={false}
+              tick={{ fontSize: '1.4rem' }}
+              dx={33}
+            />
+            &lt;YAxis
+              yAxisId="calories"
+              orientation="left"
+              hide
+              axisLine={false}
+              padding={{ left: 35 }}
+            />
+            &lt;Tooltip content={&lt;CustomTooltip />} />
+            &lt;Legend
+              iconType="circle"
+              verticalAlign="top"
+              align="right"
+              iconSize={8}
+              wrapperStyle={{ right: 0, top: -30 }}
+              formatter={(value) => (
+                &lt;span
+                  style={{
+                    color: '#74798C',
+                    fontSize: '1.4rem',
+                    fontWeight: '500',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  {value}
+                &lt;/span>
+              )}
+            />
+            &lt;Bar
+              yAxisId="kilogram"
+              dataKey="kilogram"
+              fill="#282D30"
+              name="Poids (kg)"
+              barSize={7}
+              radius={[3.5, 3.5, 0, 0]}
+            />
+            &lt;Bar
+              yAxisId="calories"
+              dataKey="calories"
+              fill="#E60000"
+              name="Calories brûlées (kCal)"
+              barSize={7}
+              radius={[3.5, 3.5, 0, 0]}
+            />
+          &lt;/BarChart>
+        &lt;/ResponsiveContainer>
+      )}
+    &lt;/div>
+  )
+}
+
+// Définir les types de propriétés attendues
+Activite.propTypes = {
+  userActivity: PropTypes.shape({
+    data: PropTypes.shape({
+      sessions: PropTypes.arrayOf(
+        PropTypes.shape({
+          day: PropTypes.string.isRequired, // Jour de l'activité
+          kilogram: PropTypes.number.isRequired, // Poids (en kg)
+          calories: PropTypes.number.isRequired, // Calories brûlées (en kCal)
+        }),
+      ).isRequired, // Les données de l'activité quotidienne
+    }).isRequired, // Les données de l'activité quotidienne de l'utilisateur
+  }).isRequired,
+  error: PropTypes.string,
+}
+
+export default Activite
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Error.html">Error</a></li><li><a href="module-Graphs.html">Graphs</a></li><li><a href="module-Loader.html">Loader</a></li></ul><h3>Classes</h3><ul><li><a href="APIDataAdapter.html">APIDataAdapter</a></li><li><a href="BaseService.html">BaseService</a></li><li><a href="DataAdapter.html">DataAdapter</a></li><li><a href="DataService.html">DataService</a></li><li><a href="MockDataAdapter.html">MockDataAdapter</a></li><li><a href="MockService.html">MockService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Activite">Activite</a></li><li><a href="global.html#CustomTick">CustomTick</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataProvider">DataProvider</a></li><li><a href="global.html#Duree">Duree</a></li><li><a href="global.html#Intensite">Intensite</a></li><li><a href="global.html#NoData">NoData</a></li><li><a href="global.html#Result">Result</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#formatDataCount">formatDataCount</a></li><li><a href="global.html#useHostingData">useHostingData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 28 2024 16:07:28 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

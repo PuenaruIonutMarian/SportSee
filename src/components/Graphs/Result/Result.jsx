@@ -13,34 +13,40 @@ import NoData from '../../Error/NoData'
  * @param {Object} props - Les propriétés passées au composant.
  * @param {Object} props.data - Les données nutritionnelles de l'utilisateur.
  * @param {string} props.category - La catégorie de données à afficher ('calories', 'proteines', 'glucides' ou 'lipides').
+ * @param {boolean} props.error - Indique si une erreur est survenue.
  * @returns {JSX.Element} Composant Result.
  */
-const Result = ({ data, category }) => {
+const Result = ({ data, category, error }) => {
+  let adaptedData
   // Adapter les données de l'utilisateur
-  const adaptedData = DataAdapter.adaptUserData(data.data)
+  try {
+    adaptedData = DataAdapter.adaptUserData(data.data)
+  } catch (err) {
+    adaptedData = null
+  }
 
   // Définir les catégories de données avec les icônes associées
   const categories = {
     calories: {
-      count: adaptedData.calorieCount,
+      count: adaptedData ? adaptedData.calorieCount : null,
       icon: CaloriesIcon,
       label: 'Calories',
       unit: 'kCal',
     },
     proteines: {
-      count: adaptedData.proteinCount,
+      count: adaptedData ? adaptedData.proteinCount : null,
       icon: ProteinIcon,
       label: 'Protéines',
       unit: 'g',
     },
     glucides: {
-      count: adaptedData.carbohydrateCount,
+      count: adaptedData ? adaptedData.carbohydrateCount : null,
       icon: CarbsIcon,
       label: 'Glucides',
       unit: 'g',
     },
     lipides: {
-      count: adaptedData.lipidCount,
+      count: adaptedData ? adaptedData.lipidCount : null,
       icon: FatIcon,
       label: 'Lipides',
       unit: 'g',
@@ -50,13 +56,10 @@ const Result = ({ data, category }) => {
   // Récupérer les données de la catégorie spécifiée
   const categoryData = categories[category]
 
-  // Afficher un message d'erreur si la catégorie spécifiée n'existe pas
-  if (!categoryData) return null
-
   return (
     <div className={style.resultsDataItem}>
-      {!categoryData.count ? (
-        <NoData />
+      {!categoryData.count || error ? (
+        <NoData style={{ color: 'white' }} />
       ) : (
         <>
           {/* Afficher l'icône de la catégorie */}
@@ -72,7 +75,7 @@ const Result = ({ data, category }) => {
               {formatDataCount(categoryData.count)}
               {categoryData.unit}
             </span>
-            <p>{categoryData.label}</p>
+            <p className={style.textLabel}>{categoryData.label}</p>
           </div>
         </>
       )}
@@ -100,6 +103,7 @@ Result.propTypes = {
   }).isRequired, // Les données nutritionnelles de l'utilisateur
   category: PropTypes.oneOf(['calories', 'proteines', 'glucides', 'lipides'])
     .isRequired, // La catégorie de données à afficher
+  error: PropTypes.string,
 }
 
 export default Result

@@ -27,6 +27,12 @@ Dans le fichier 'config/AppConfig.js', réglez la variable 'isUsingMockData' sur
 - npm start
 - L'application sera accessible à l'adresse http://localhost:3000.
 
+## Hébergement
+
+Le projet est également hébergé à l'adresse suivante :
+
+- https://sportseepuenaruionut.netlify.app
+
 ## API
 
 Les données réelles sont récupérées à partir de l'API fournie par OpenClassrooms.
@@ -62,4 +68,5 @@ Pour générer la documentation localement, assurez-vous d'avoir JSDoc installé
 Ensuite, exécutez la commande suivante dans le répertoire du projet :
 
 - jsdoc -c jsdoc.json
-  Cela générera la documentation à partir des commentaires JSDoc dans le code et la placera dans le dossier docs.
+
+Cela générera la documentation à partir des commentaires JSDoc dans le code et la placera dans le dossier docs.
